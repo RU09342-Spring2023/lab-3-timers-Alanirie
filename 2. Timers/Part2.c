@@ -29,9 +29,21 @@ void main(){
 
 
 void gpioInit(){
-    // @TODO Initialize the Red or Green LED
+      //Initialize the Red or Green LED
+      // Configure RED LED on P1.0 as Output
+      P1OUT &= ~BIT0;                         // Clear P1.0 output latch for a defined power-on state
+      P1DIR |= BIT0;                          // Set P1.0 to output direction
 
-    // @TODO Initialize Button 2.3
+      // Configure Green LED on P6.6 as Output
+      P6OUT &= ~BIT6;                         // Clear P6.6 output latch for a defined power-on state
+      P6DIR |= BIT6;                          // Set P6.6 to output direction
+
+      //Initialize Button 2.3
+      // Configure Button on P2.3 as input with pullup resistor
+      P2OUT |= BIT3;                          // Configure P2.3 as pulled-up
+      P2REN |= BIT3;                          // P2.3 pull-up register enable
+      P2IES &= ~BIT3;                         // P2.3 Low --> High edge
+      P2IE |= BIT3;                           // P2.3 interrupt enabled
 
 
 }
